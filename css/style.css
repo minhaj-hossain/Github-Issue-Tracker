@@ -4,3 +4,8 @@
 * {
     font-family: "Geist", sans-serif;
 }
+
+.line {
+    border: 1px solid #e5e7eb;
+    flex: auto;
+}
