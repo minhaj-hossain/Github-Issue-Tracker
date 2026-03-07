@@ -34,10 +34,11 @@
         <div class="navbar bg-base-100 shadow-sm pl-10 pr-10">
             <div class="flex-1 ">
                 <a class="btn btn-ghost text-2xl font-semibold ">
-                    
+
                     <div class="w-6"><img src="./assets/github-logo.png" alt=""></div>
-                    
-                    GitHub Issues Tracker</a>
+
+                    GitHub Issues Tracker
+                </a>
             </div>
 
             <div class="flex items-center space-x-4">
@@ -47,7 +48,7 @@
                         class="input border-none outline-none bg-transparent ring-0  w-full max-w-xs" id="search">
                 </div>
 
-                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>Primary</button>
+                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
             </div>
         </div>
     </header>
@@ -66,7 +67,7 @@
         <!-- issue section -->
         <section>
 
-            <!-- issu tracking section  -->
+            <!-- issue tracking section  -->
             <section class="flex items-center bg-white p-6 rounded-lg shadow-sm gap-2">
 
                 <!-- issue tracking left -->
@@ -95,6 +96,67 @@
                         <p class="font-medium ">Closed</p>
                     </div>
                 </div>
+            </section>
+
+            <!-- issue cards section -->
+            <section class="bg-base-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 rounded-lg shadow-sm">
+
+                <!-- issue card  -->
+
+                <div>
+
+                    <!-- upper section of the card -->
+                    <div class="bg-white shadow-sm p-4 rounded-t-lg  space-y-4 border-t-2 border-[#ef4444] border-b border-b-[#e4e4e7]">
+    
+                        <!-- cards badge and status icon -->
+                        <div class="flex justify-between">
+                            <div>
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div
+                                class="badge badge-soft badge-primary bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full">
+                                High</div>
+                        </div>
+    
+                        <!-- card text and badge  -->
+                        <div class="space-y-3">
+    
+                            <!-- card text  -->
+                            <div class="space-y-2">
+                                <h3 class="title font-semibold text-[14px]">Fix navigation menu on mobile devices</h3>
+                                <p class="Description text-[#64748b] text-[12px]">The navigation menu doesn't collapse
+                                    properly on mobile devices...</p>
+                            </div>
+    
+                            <!-- badge under text  -->
+                            <div class="flex gap-1">
+    
+                                <div
+                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
+                                    <i class="fa-solid fa-bug"></i>Bug
+                                </div>
+    
+                                <div
+                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase rounded-full w-fit border border-[#fde68a]">
+                                    <i class="fa-solid fa-bug"></i>help wanted
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- lower section of card -->
+                     <div class="rounded-b-lg shadow-sm p-4 tex-[12px] text-[#64748b] space-y-1 bg-white">
+
+                        <p class="">#1
+                        by john_doe</p>
+                        <p>1/15/2024</p>
+
+                     </div>
+
+                </div>
+              
+
             </section>
         </section>
     </main>
