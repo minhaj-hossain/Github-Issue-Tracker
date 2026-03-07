@@ -26,139 +26,53 @@
 
 </head>
 
-<body class="bg-[#f8fafc] space-y-[60px] ">
+<body class="container mx-auto flex items-center justify-center min-h-screen py-[100px]">
 
+    <main class="space-y-6 shadow-[0_5px_10px_0_rgba(0,0,0,0.08)] bg-white p-8">
 
-    <!-- header section  -->
-    <header>
-        <div class="navbar bg-base-100 shadow-sm pl-10 pr-10">
-            <div class="flex-1 ">
-                <a class="btn btn-ghost text-2xl font-semibold ">
-
-                    <div class="w-6"><img src="./assets/github-logo.png" alt=""></div>
-
-                    GitHub Issues Tracker
-                </a>
+        <!-- header part -->
+        <section class="flex flex-col justify-center items-center space-y-6">
+            <div><img src="./assets/github-logo.png" alt=""></div>
+            <div class="text-center space-y-1 ">
+                <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+                <p class="text-[#64748b]">Sign in to manage your issues</p>
             </div>
+        </section>
 
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center gap-2 border pl-3 border-gray-300 rounded-lg focus-within:ring-1">
-                    <i class="fas fa-search text-[#64748B]"></i>
-                    <input type="search" placeholder="Search issues..."
-                        class="input border-none outline-none bg-transparent ring-0  w-full max-w-xs" id="search">
-                </div>
 
-                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
-            </div>
+        <!-- input field  -->
+        <fieldset class="fieldset w-xs  ">
+            <!-- <legend class="fieldset-legend">Login</legend> -->
+
+            <label class="label font-medium text-black">Username</label>
+            <input id="user-name" type="text" class="input text-[#64748b] border-[#e4e4e7]" value="admin"
+                placeholder="Enter Username" />
+            <p class="text-[#4a00ff] text-[12px] mb-4">Default: admin</p>
+
+            <label class="label font-medium text-black">Password</label>
+            <input id="password" value="admin123" type="password" class="input text-[#64748b] border border-[#e4e4e7]"
+                placeholder="Enter Password" />
+            <p class="text-[#4a00ff] text-[12px]">Default: admin123</p>
+
+            <button onclick="loadPage()" class="btn btn-primary text-white mt-4">Sign In</button>
+        </fieldset>
+
+
+        <!-- line part -->
+        <div class="flex items-center justify-center space-x-2">
+            <div class="line left-line"></div>
+            <p>OR</p>
+            <div class=" line right-line"></div>
         </div>
-    </header>
 
-    <main class="container mx-auto space-y-6">
-
-        <!-- tab section  -->
-        <section class="tab-btn bg-white flex items-center p-6 rounded-lg shadow-sm gap-2">
-
-            <button class="btn btn-primary ">All</button>
-            <button class="btn btn-outline">Open</button>
-            <button class="btn btn-outline">Closed</button>
-
+        <section class="text-center space-y-2">
+            <h3 class="text-[14px] text-[#64748b]">Demo Credentials:</h3>
+            <div class="p-6 bg-[#f8fafc] rounded-lg">
+                <p><span class="font-semibold">Username:</span> admin</p>
+                <p><span class="font-semibold">Password:</span> admin123</p>
+            </div>
         </section>
 
-        <!-- issue section -->
-        <section>
-
-            <!-- issue tracking section  -->
-            <section class="flex items-center bg-white p-6 rounded-lg shadow-sm gap-2">
-
-                <!-- issue tracking left -->
-                <div class="flex items-center gap-2">
-                    <div class="bg-[#ECE4FF] rounded-full p-2"><img src="./assets/Aperture.png" alt=""></div>
-
-                    <div>
-                        <h2 class="font-semibold text-xl">50 Issues</h2>
-                        <p class="text-[#64748b]">Track and manage your project issues</p>
-                    </div>
-
-                </div>
-
-                <!-- issue tracking right -->
-                <div class="flex items-center gap-4 ml-auto">
-
-                    <!-- open status -->
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded-full bg-[#00A96E]"></div>
-                        <p class="font-medium ">Open</p>
-                    </div>
-
-                    <!-- closed status -->
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded-full bg-[#A855F7]"></div>
-                        <p class="font-medium ">Closed</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- issue cards section -->
-            <section class="bg-base-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 rounded-lg shadow-sm">
-
-                <!-- issue card  -->
-
-                <div>
-
-                    <!-- upper section of the card -->
-                    <div class="bg-white shadow-sm p-4 rounded-t-lg  space-y-4 border-t-2 border-[#ef4444] border-b border-b-[#e4e4e7]">
-    
-                        <!-- cards badge and status icon -->
-                        <div class="flex justify-between">
-                            <div>
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-                            <div
-                                class="badge badge-soft badge-primary bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full">
-                                High</div>
-                        </div>
-    
-                        <!-- card text and badge  -->
-                        <div class="space-y-3">
-    
-                            <!-- card text  -->
-                            <div class="space-y-2">
-                                <h3 class="title font-semibold text-[14px]">Fix navigation menu on mobile devices</h3>
-                                <p class="Description text-[#64748b] text-[12px]">The navigation menu doesn't collapse
-                                    properly on mobile devices...</p>
-                            </div>
-    
-                            <!-- badge under text  -->
-                            <div class="flex gap-1">
-    
-                                <div
-                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
-                                    <i class="fa-solid fa-bug"></i>Bug
-                                </div>
-    
-                                <div
-                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase rounded-full w-fit border border-[#fde68a]">
-                                    <i class="fa-solid fa-bug"></i>help wanted
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- lower section of card -->
-                     <div class="rounded-b-lg shadow-sm p-4 tex-[12px] text-[#64748b] space-y-1 bg-white">
-
-                        <p class="">#1
-                        by john_doe</p>
-                        <p>1/15/2024</p>
-
-                     </div>
-
-                </div>
-              
-
-            </section>
-        </section>
     </main>
 
 
