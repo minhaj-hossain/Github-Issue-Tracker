@@ -9,3 +9,7 @@
     border: 1px solid #e5e7eb;
     flex: auto;
 }
+
+.tab-btn button {
+    width: 100px;;
+}
