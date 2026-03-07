@@ -7,6 +7,10 @@ const password = document.getElementById("password");
 const issueCardContainer = document.getElementById("issue-card-container");
 const quantityOfIssues = document.getElementById("quantity-of-issues");
 const spinnerSection = document.getElementById("spinner-section");
+const searchInput = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+
+// console.log(searchInput, searchBtn)
 
 // login function
 function loadPage() {
@@ -27,6 +31,18 @@ function hideSpinner() {
     spinnerSection.classList.add("hidden");
 }
 
+
+searchBtn.addEventListener("click", async () => {
+    const query = searchInput.value.trim();
+
+    showSpinner();
+    const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}`);
+    const data = await response.json();
+    hideSpinner();
+
+    displayIssues(data.data)
+
+})
 
 async function loadIssues() {
 
@@ -54,8 +70,6 @@ function displayIssues(issues) {
 
         const div = document.createElement("div");
 
-        // div.classList.add("h-full rounded-b-lg bg-white shadow-sm  rounded-t-lg border-t-4 `${element.status.toLowerCase() === 'open' ? 'border-green-500' : 'border-purple-500'}`");
-
         div.innerHTML = `
 
         <div class="h-full rounded-b-lg bg-white shadow-sm  rounded-t-lg border-t-4 ${element.status.toLowerCase() === 'open' ? 'border-green-500' : 'border-purple-500'}">
@@ -70,10 +84,10 @@ function displayIssues(issues) {
                             </div>
                             <div
                                 class=" ${element.priority === 'high'
-                ? 'badge badge-soft badge-primary bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'// If High
+                ? 'badge badge-soft badge-primary bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
                 : element.priority === 'medium'
-                    ? 'badge badge-soft badge-primary bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full' // If Medium
-                : 'badge badge-soft badge-primary bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full' // If Low (Everything else)
+                    ? 'badge badge-soft badge-primary bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full' 
+                : 'badge badge-soft badge-primary bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full' 
             }">
                                 ${element.priority ? element.priority : 'No priority available'}</div>
                         </div>

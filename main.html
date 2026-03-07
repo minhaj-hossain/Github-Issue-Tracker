@@ -44,11 +44,11 @@
             <div class="flex items-center space-x-4">
                 <div class="flex items-center gap-2 border pl-3 border-gray-300 rounded-lg focus-within:ring-1">
                     <i class="fas fa-search text-[#64748B]"></i>
-                    <input type="search" placeholder="Search issues..."
+                    <input type="search" placeholder="Search issues..." id="search-input"
                         class="input border-none outline-none bg-transparent ring-0  w-full max-w-xs" id="search">
                 </div>
 
-                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
+                <button id="search-btn" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Search</button>
             </div>
         </div>
     </header>
@@ -58,11 +58,13 @@
         <!-- tab section  -->
         <section class="tab-btn bg-white flex items-center p-6 rounded-lg shadow-sm gap-2">
 
-            <button class="btn btn-primary ">All</button>
+            <button class="btn btn-primary">All</button>
             <button class="btn btn-outline">Open</button>
             <button class="btn btn-outline">Closed</button>
 
         </section>
+
+       
 
         <!-- issue section -->
         <section>
@@ -98,18 +100,19 @@
                 </div>
             </section>
 
+            <section id="spinner-section" class="flex justify-center my-10"><span class="loading loading-spinner text-neutral"></span>
+            </section>
+
             <!-- issue cards section -->
             <section id="issue-card-container"
                 class="bg-base-200 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 rounded-lg shadow-sm">
 
                 <!-- issue card  -->
 
-
-
             </section>
         </section>
 
-        <section id="spinner-section" class="flex justify-center"><span class="loading loading-spinner text-neutral"></span></section>
+        
     </main>
 
 
