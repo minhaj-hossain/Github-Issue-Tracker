@@ -10,7 +10,11 @@ const spinnerSection = document.getElementById("spinner-section");
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 
-// console.log(searchInput, searchBtn)
+const tabBtns = document.querySelectorAll(".tab-btn button");
+
+
+
+// console.log(tabBtns)
 
 // login function
 function loadPage() {
@@ -41,7 +45,9 @@ searchBtn.addEventListener("click", async () => {
     hideSpinner();
 
     displayIssues(data.data)
+    displayQuantityOfIssues(data.data);
 
+    searchInput.value = "";
 })
 
 async function loadIssues() {
@@ -53,12 +59,58 @@ async function loadIssues() {
     hideSpinner();
     displayIssues(data.data)
     displayQuantityOfIssues(data.data);
+    filterIssuesByStatus(data.data);
 }
 
 // quantity counter
 function displayQuantityOfIssues(issues) {
     quantityOfIssues.innerText = issues.length;
 }
+
+async function btnSelector(id) {
+
+    tabBtns.forEach(btn => {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline");
+    })
+
+    const selectedBtn = document.getElementById(id);
+    selectedBtn.classList.remove("btn-outline");
+    selectedBtn.classList.add("btn-primary");
+
+
+    showSpinner();
+    const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+    const data = await response.json();
+    hideSpinner()
+
+    // console.log(selectedBtn.innerText.toLocaleLowerCase())
+
+    if (selectedBtn.innerText.toLocaleLowerCase() === 'all') {
+
+        displayIssues(data.data);
+        displayQuantityOfIssues(data.data);
+    } else if (selectedBtn.innerText.toLocaleLowerCase() === 'open') {
+
+        const openIssues = data.data.filter(elem => {
+            return elem.status.toLowerCase() === selectedBtn.innerText.toLocaleLowerCase();
+        });
+
+        displayIssues(openIssues);
+        displayQuantityOfIssues(openIssues)
+    } else {
+
+        const closedIssues = data.data.filter(elem => {
+            return elem.status.toLowerCase() === selectedBtn.innerText.toLocaleLowerCase();
+        }   );
+
+        displayIssues(closedIssues);
+        displayQuantityOfIssues(closedIssues)   
+    }
+
+
+}
+
 
 // function to display All issues on the main page
 function displayIssues(issues) {
@@ -86,8 +138,8 @@ function displayIssues(issues) {
                                 class=" ${element.priority === 'high'
                 ? 'badge badge-soft badge-primary bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
                 : element.priority === 'medium'
-                    ? 'badge badge-soft badge-primary bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full' 
-                : 'badge badge-soft badge-primary bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full' 
+                    ? 'badge badge-soft badge-primary bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full'
+                    : 'badge badge-soft badge-primary bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'
             }">
                                 ${element.priority ? element.priority : 'No priority available'}</div>
                         </div>
