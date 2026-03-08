@@ -67,76 +67,7 @@ async function loadIssues() {
     filterIssuesByStatus(data.data);
 }
 
-async function openModal(id) {
 
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
-    const data = await res.json();
-
-    const issue = data.data;
-
-    console.log(issue)
-    // console.log(modalInner)
-
-    modalInner.innerHTML = '';
-
-    modalInner.innerHTML = `
-    
-            <!-- modal header  -->
-                        <div class="space-y-2">
-                            <h1 class="font-bold text-2xl">${issue.title ? issue.title : 'title not found'} </h1>
-                            <div class="flex space-x-2 items-center">
-                                <div class="badge badge-accent bg-[#00a96e] text-white">${issue.status}</div>
-                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
-                                <p class="text-[12px] text-[#64748b]">Opened by Fahim Ahmed</p>
-                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
-                                <p class="text-[12px] text-[#64748b]">22/02/2026</p>
-                            </div>
-                        </div>
-
-                        <!-- modal badge  -->
-                        <div class="flex flex-wrap space-x-2">
-
-                                <div
-                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
-                                    <i class="fa-solid fa-bug"></i>${issue.labels[0]}
-                                </div>
-
-                                <div
-                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase ${!issue.labels[1] ? 'hidden' : ''} rounded-full w-fit border border-[#fde68a]">
-                                    <i class="fa-solid fa-bug"></i>${issue.labels[1]} 
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- description -->
-                         <p class="text-[#64748b] line-clamp-2">${issue.description}</p>
-
-
-                         <!-- assignee info -->
-
-                         <div class="flex bg-[#f8fafc] rounded-lg p-4">
-                            <div class="flex-1">
-                                <p class="text-[#64748b]">Assignee:</p>
-                                <strong>${issue.assignee}</strong>
-                            </div>
-
-                            <div class="flex-1">
-
-                                <p class="text-[#64748b]">Priority:</p>
-
-                                <div class="badge badge-accent">${issue.priority}</div>
-
-                            </div>
-
-                         </div>
-    
-    `
-
-
-
-
-    issueCardModal.showModal();
-}
 
 // quantity counter
 function displayQuantityOfIssues(issues) {
@@ -236,7 +167,7 @@ function displayIssues(issues) {
                             
 
                                 <div
-                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] ${!element.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
+                                    class="badge badge-soft badge-primary bg-[#feecec]  flex items-center text-[#ef4444] ${!element.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
                                     <i class="fa-solid fa-bug"></i>${element.labels[0]}
                                 </div>
 
@@ -264,6 +195,78 @@ function displayIssues(issues) {
 
     });
 
+}
+
+async function openModal(id) {
+
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    const data = await res.json();
+
+    const issue = data.data;
+
+    console.log(issue)
+    // console.log(modalInner)
+
+    modalInner.innerHTML = '';
+
+    modalInner.innerHTML = `
+    
+            <!-- modal header  -->
+                        <div class="space-y-2">
+                            <h1 class="font-bold text-2xl">${issue.title ? issue.title : 'title not found'} </h1>
+                            <div class="flex space-x-2 items-center">
+                                <div class="badge badge-accent bg-[#00a96e] text-white">${issue.status}</div>
+                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
+                                <p class="text-[12px] text-[#64748b]">Opened by Fahim Ahmed</p>
+                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
+                                <p class="text-[12px] text-[#64748b]">22/02/2026</p>
+                            </div>
+                        </div>
+
+                        <!-- modal badge  -->
+                        <div class="flex space-x-2">
+
+                                <div
+                                    class="badge badge-soft badge-primary flex items-center  ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border "> ${issue.labels[0].toLowerCase() === 'enhancement' ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
+                : '<i class="fa-solid fa-bug"></i>'}
+                                    </i>${issue.labels[0]}
+                                </div>
+
+                                <div
+                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase ${!issue.labels[1] ? 'hidden' : ''} rounded-full w-fit border border-[#fde68a]">
+                                    <i class="fa-solid fa-bug"></i>${issue.labels[1]} 
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- description -->
+                         <p class="text-[#64748b] line-clamp-2">${issue.description}</p>
+
+
+                         <!-- assignee info -->
+
+                         <div class="flex bg-[#f8fafc] rounded-lg p-4">
+                            <div class="flex-1">
+                                <p class="text-[#64748b]">Assignee:</p>
+                                <strong>${issue.assignee}</strong>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="text-[#64748b]">Priority:</p>
+
+                                <div class="badge badge-accent">${issue.priority}</div>
+
+                            </div>
+
+                         </div>
+    
+    `
+
+
+
+
+    issueCardModal.showModal();
 }
 
 
