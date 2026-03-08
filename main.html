@@ -33,7 +33,7 @@
     <header>
         <div class="navbar bg-base-100 shadow-sm pl-10 pr-10">
             <div class="flex-1 ">
-                <a class="btn btn-ghost text-2xl font-semibold ">
+                <a class="btn btn-ghost text-[18px] md:text-2xl font-semibold ">
 
                     <div class="w-6"><img src="./assets/github-logo.png" alt=""></div>
 
@@ -42,7 +42,7 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <div class="flex items-center gap-2 border pl-3 border-gray-300 rounded-lg focus-within:ring-1">
+                <div class="md:flex hidden  items-center gap-2 border pl-3 border-gray-300 rounded-lg focus-within:ring-1">
                     <i class="fas fa-search text-[#64748B]"></i>
                     <input type="search" placeholder="Search issues..." id="search-input"
                         class="input border-none outline-none bg-transparent ring-0  w-full max-w-xs" id="search">
@@ -64,7 +64,7 @@
 
         </section>
 
-        <!-- main>   modal section  -->
+        <!--  modal section  -->
         <section>
 
             <!-- Open the modal using ID.showModal() method -->
@@ -73,18 +73,13 @@
                 <div class="modal-box">
                     <div id="modal-inner" class="space-y-4">
 
-                        
-
-
-
-
+    
                     </div>
-
 
                     <div class="modal-action">
                         <form method="dialog">
                             <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
+                            <button class="btn btn-primary">Close</button>
                         </form>
                     </div>
                 </div>

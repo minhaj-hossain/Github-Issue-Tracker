@@ -13,12 +13,6 @@ const issueCardModal = document.getElementById("issue-card-modal");
 const tabBtns = document.querySelectorAll(".tab-btn button");
 const modalInner = document.getElementById('modal-inner')
 
-const labals = document.getElementById('lebels');
-
-
-
-
-console.log(labals)
 
 // login function
 function loadPage() {
@@ -128,6 +122,14 @@ function displayIssues(issues) {
 
         // console.log(element);
 
+        const date = new Date(element.createdAt)
+
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear()
+
+        const formattedDate = `${day}/${month}/${year}`
+        
         const div = document.createElement("div");
 
         div.innerHTML = `
@@ -185,7 +187,7 @@ function displayIssues(issues) {
 
                         <p class="">#1
                             by ${element.author || 'Unknown Author'}</p>
-                        <p>${element.createdAt || 'No date available'}</p>
+                        <p>${formattedDate || 'No date available'}</p>
 
                     </div>
                 </div>
@@ -204,7 +206,15 @@ async function openModal(id) {
 
     const issue = data.data;
 
-    console.log(issue)
+    const date = new Date(issue.updatedAt)
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear()
+
+    const formattedDate = `${day}/${month}/${year}`
+
+    // console.log(issue)
     // console.log(modalInner)
 
     modalInner.innerHTML = '';
@@ -214,12 +224,18 @@ async function openModal(id) {
             <!-- modal header  -->
                         <div class="space-y-2">
                             <h1 class="font-bold text-2xl">${issue.title ? issue.title : 'title not found'} </h1>
+
                             <div class="flex space-x-2 items-center">
-                                <div class="badge badge-accent bg-[#00a96e] text-white">${issue.status}</div>
+
+                                <div class="badge badge-accent ">${issue.status}</div>
+
+                                
+
+
                                 <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
                                 <p class="text-[12px] text-[#64748b]">Opened by Fahim Ahmed</p>
                                 <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
-                                <p class="text-[12px] text-[#64748b]">22/02/2026</p>
+                                <p class="text-[12px] text-[#64748b]">${formattedDate}</p>
                             </div>
                         </div>
 
@@ -228,7 +244,7 @@ async function openModal(id) {
 
                                 <div
                                     class="badge badge-soft badge-primary flex items-center  ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border "> ${issue.labels[0].toLowerCase() === 'enhancement' ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
-                : '<i class="fa-solid fa-bug"></i>'}
+            : '<i class="fa-solid fa-bug"></i>'}
                                     </i>${issue.labels[0]}
                                 </div>
 
@@ -255,7 +271,12 @@ async function openModal(id) {
 
                                 <p class="text-[#64748b]">Priority:</p>
 
-                                <div class="badge badge-accent">${issue.priority}</div>
+                                <div class="badge badge-accent border-none ${issue.priority.toLowerCase() === 'high'
+                                ? ' bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
+                                : issue.priority.toLowerCase() === 'medium'
+                                    ? ' bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full'
+                                    : ' bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'
+                            }">${issue.priority}</div>
 
                             </div>
 
