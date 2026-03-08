@@ -129,15 +129,15 @@ function displayIssues(issues) {
         const year = date.getFullYear()
 
         const formattedDate = `${day}/${month}/${year}`
-        
+
         const div = document.createElement("div");
 
         div.innerHTML = `
 
-        <div class="h-full rounded-b-lg bg-white shadow-sm  rounded-t-lg border-t-4 ${element.status.toLowerCase() === 'open' ? 'border-green-500' : 'border-purple-500'}">
+        <div onclick="openModal(${element.id})" class="h-full rounded-b-lg bg-white shadow-sm  rounded-t-lg border-t-4 ${element.status.toLowerCase() === 'open' ? 'border-green-500' : 'border-purple-500'}">
          
                     <!-- upper section of the card -->
-                    <div onclick="openModal(${element.id})" class="p-4 space-y-4 border-b border-b-[#e4e4e7]">
+                    <div  class="p-4 space-y-4 border-b border-b-[#e4e4e7]">
 
                         <!-- cards badge and status icon -->
                         <div class="flex justify-between">
@@ -264,7 +264,7 @@ async function openModal(id) {
                          <div class="flex bg-[#f8fafc] rounded-lg p-4">
                             <div class="flex-1">
                                 <p class="text-[#64748b]">Assignee:</p>
-                                <strong>${issue.assignee}</strong>
+                                <strong> ${issue.assignee ? issue.assignee : 'Unknown Assignee'}</strong>
                             </div>
 
                             <div class="flex-1">
@@ -272,11 +272,11 @@ async function openModal(id) {
                                 <p class="text-[#64748b]">Priority:</p>
 
                                 <div class="badge badge-accent border-none ${issue.priority.toLowerCase() === 'high'
-                                ? ' bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
-                                : issue.priority.toLowerCase() === 'medium'
-                                    ? ' bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full'
-                                    : ' bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'
-                            }">${issue.priority}</div>
+            ? ' bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
+            : issue.priority.toLowerCase() === 'medium'
+                ? ' bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full'
+                : ' bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'
+        }">${issue.priority}</div>
 
                             </div>
 
