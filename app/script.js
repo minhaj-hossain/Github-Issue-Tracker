@@ -9,12 +9,16 @@ const quantityOfIssues = document.getElementById("quantity-of-issues");
 const spinnerSection = document.getElementById("spinner-section");
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
-
+const issueCardModal = document.getElementById("issue-card-modal");
 const tabBtns = document.querySelectorAll(".tab-btn button");
+const modalInner = document.getElementById('modal-inner')
+
+const labals = document.getElementById('lebels');
 
 
 
-// console.log(tabBtns)
+
+console.log(labals)
 
 // login function
 function loadPage() {
@@ -36,6 +40,7 @@ function hideSpinner() {
 }
 
 
+// search functionality
 searchBtn.addEventListener("click", async () => {
     const query = searchInput.value.trim();
 
@@ -60,6 +65,77 @@ async function loadIssues() {
     displayIssues(data.data)
     displayQuantityOfIssues(data.data);
     filterIssuesByStatus(data.data);
+}
+
+async function openModal(id) {
+
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    const data = await res.json();
+
+    const issue = data.data;
+
+    console.log(issue)
+    // console.log(modalInner)
+
+    modalInner.innerHTML = '';
+
+    modalInner.innerHTML = `
+    
+            <!-- modal header  -->
+                        <div class="space-y-2">
+                            <h1 class="font-bold text-2xl">${issue.title ? issue.title : 'title not found'} </h1>
+                            <div class="flex space-x-2 items-center">
+                                <div class="badge badge-accent bg-[#00a96e] text-white">${issue.status}</div>
+                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
+                                <p class="text-[12px] text-[#64748b]">Opened by Fahim Ahmed</p>
+                                <div class="w-1 h-1 rounded-full bg-[#64748B]"></div>
+                                <p class="text-[12px] text-[#64748b]">22/02/2026</p>
+                            </div>
+                        </div>
+
+                        <!-- modal badge  -->
+                        <div class="flex flex-wrap space-x-2">
+
+                                <div
+                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
+                                    <i class="fa-solid fa-bug"></i>${issue.labels[0]}
+                                </div>
+
+                                <div
+                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase ${!issue.labels[1] ? 'hidden' : ''} rounded-full w-fit border border-[#fde68a]">
+                                    <i class="fa-solid fa-bug"></i>${issue.labels[1]} 
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- description -->
+                         <p class="text-[#64748b] line-clamp-2">${issue.description}</p>
+
+
+                         <!-- assignee info -->
+
+                         <div class="flex bg-[#f8fafc] rounded-lg p-4">
+                            <div class="flex-1">
+                                <p class="text-[#64748b]">Assignee:</p>
+                                <strong>${issue.assignee}</strong>
+                            </div>
+
+                            <div class="flex-1">
+
+                                <p class="text-[#64748b]">Priority:</p>
+
+                                <div class="badge badge-accent">${issue.priority}</div>
+
+                            </div>
+
+                         </div>
+    
+    `
+
+
+
+
+    issueCardModal.showModal();
 }
 
 // quantity counter
@@ -102,14 +178,15 @@ async function btnSelector(id) {
 
         const closedIssues = data.data.filter(elem => {
             return elem.status.toLowerCase() === selectedBtn.innerText.toLocaleLowerCase();
-        }   );
+        });
 
         displayIssues(closedIssues);
-        displayQuantityOfIssues(closedIssues)   
+        displayQuantityOfIssues(closedIssues)
     }
 
 
 }
+
 
 
 // function to display All issues on the main page
@@ -127,7 +204,7 @@ function displayIssues(issues) {
         <div class="h-full rounded-b-lg bg-white shadow-sm  rounded-t-lg border-t-4 ${element.status.toLowerCase() === 'open' ? 'border-green-500' : 'border-purple-500'}">
          
                     <!-- upper section of the card -->
-                    <div class="p-4 space-y-4 border-b border-b-[#e4e4e7]">
+                    <div onclick="openModal(${element.id})" class="p-4 space-y-4 border-b border-b-[#e4e4e7]">
 
                         <!-- cards badge and status icon -->
                         <div class="flex justify-between">
@@ -154,16 +231,18 @@ function displayIssues(issues) {
                             </div>
 
                             <!-- badge under text  -->
-                            <div class="flex gap-1">
+                            <div class="flex flex-wrap gap-1" id="lebels">
+
+                            
 
                                 <div
-                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
-                                    <i class="fa-solid fa-bug"></i>Bug
+                                    class="badge badge-soft badge-primary bg-[#feecec] flex items-center text-[#ef4444] ${!element.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border border-[#fecaca]">
+                                    <i class="fa-solid fa-bug"></i>${element.labels[0]}
                                 </div>
 
                                 <div
-                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase text-[12px] rounded-full w-fit border border-[#fde68a]">
-                                    <i class="fa-solid fa-bug"></i>help wanted
+                                    class="badge badge-soft badge-primary bg-[#fff8db] flex items-center text-[#ef4444] font-medium px-1 uppercase ${!element.labels[1] ? 'hidden' : ''} rounded-full w-fit border border-[#fde68a]">
+                                    <i class="fa-solid fa-bug"></i>${element.labels[1]} 
                                 </div>
                             </div>
                         </div>
