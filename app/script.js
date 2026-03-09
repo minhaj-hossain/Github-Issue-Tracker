@@ -243,8 +243,7 @@ async function openModal(id) {
                         <div class="flex space-x-2">
 
                                 <div
-                                    class="badge badge-soft badge-primary flex items-center  ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border "> ${issue.labels[0].toLowerCase() === 'enhancement' ? '<i class="fa-solid fa-wand-magic-sparkles"></i>'
-            : '<i class="fa-solid fa-bug"></i>'}
+                                    class="badge badge-soft badge-primary flex items-center  ${!issue.labels[0] ? 'hidden' : ''} font-medium px-1 uppercase rounded-full w-fit border "> ${issue.labels[0].toLowerCase() === 'enhancement' ? '<i class="fa-solid fa-wand-magic-sparkles"></i>': '<i class="fa-solid fa-bug"></i>'}
                                     </i>${issue.labels[0]}
                                 </div>
 
@@ -271,12 +270,7 @@ async function openModal(id) {
 
                                 <p class="text-[#64748b]">Priority:</p>
 
-                                <div class="badge badge-accent border-none ${issue.priority.toLowerCase() === 'high'
-            ? ' bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full'
-            : issue.priority.toLowerCase() === 'medium'
-                ? ' bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full'
-                : ' bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'
-        }">${issue.priority}</div>
+                                <div class="badge badge-accent border-none ${issue.priority.toLowerCase() === 'high'? ' bg-[#feecec] text-[#ef4444] font-medium text-[12px] px-5 rounded-full': issue.priority.toLowerCase() === 'medium'? ' bg-[#fff6d1] text-[#f59e0b] font-medium text-[12px] px-5 rounded-full' : ' bg-[#eeeff2] text-[#9ca3af] font-medium text-[12px] px-5 rounded-full'}">${issue.priority}</div>
 
                             </div>
 
