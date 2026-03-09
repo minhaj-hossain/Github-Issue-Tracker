@@ -2,9 +2,9 @@
 
 `Ans:` 
 
-**const:** when we need to store constant value, we use const. for primitive data, we can't modify, update, reassign value to the variable declaired using const keyword. for not-primitive, we can modify the data but we can't totally reassign a whoole new value to the variable. unlike var, it is block-scoped (stays inside { }) and lives in the "Temporal Dead Zone" until the code reaches it, so we can't use it before declaring.
+**const:** when we need to store constant value, we use const. for primitive data, we can't modify, update, reassign value to the variable declared using const keyword. for non-primitive, we can modify the data but we can't totally reassign a whole new value to the variable. unlike var, it is block-scoped (stays inside { }) and lives in the "Temporal Dead Zone" until the code reaches it, so we can't use it before declaring.
 
-**var:** it's an old keyword to declaire a variable. it is function-scoped. it can be hoisted and initialized as "undefined," meaning we can access it before the line it is written (though it will be undefined). we can modify, update, or assign value declaired with var keyword. but it has many problems, like we can declaire two variable with the same name in the same scope.
+**var:** it's an old keyword to declaire a variable. it is function-scoped. it can be hoisted and initialized as "undefined," meaning we can access it before the line it is written (though it will be undefined). we can modify, update, or assign value declared with var keyword. but it has many problems, like we can declare two variable with the same name in the same scope.
 
 **let:** It's the modern way to declare variable. we can say it's the updated version of var. it is block-scoped, which means it only works inside the curly braces `{}` it was created in. like const, it is hoisted but cannot be accessed before its declaration.
 
@@ -37,7 +37,7 @@ It's a very handy tool that comes with ES6. We use three dots `...` to implement
 * we can filter elements with particular logic and then it will give a new array of those filtered elements.
 
 **forEach()**
-It's a powerfull and awesome to loop through every element of an Array. We can say it's a short version of `for loop`. it was also comes with js ES6. One thing to remember: it doesn't return anything (returns undefined).
+It's a powerfull and awesome built in function to loop through every element of an Array. We can say it's a short version of `for loop`. it was also comes with js ES6. One thing to remember: it doesn't return anything (returns undefined).
 
 
 # 4.  What is an arrow function?
