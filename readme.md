@@ -14,7 +14,11 @@
 
 `Ans:`
 
+It's a very handy tool that comes with ES6. We use three dots `...` to implement it. It "spreads" or unpacks the elements of an array or an object. 
 
+* we use it to copy an array or object into a new one.
+* we can merge two or more arrays easily.
+* it's very useful when we want to add new data to an existing array without changing the original one.
 
 
 # 3. What is the difference between map(), filter(), and forEach()?
